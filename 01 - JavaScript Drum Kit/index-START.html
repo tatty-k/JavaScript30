@@ -47,6 +47,8 @@
     </div>
   </div>
 
+  <!-- data- indicates an attribute that programmer came up with
+  AKA is not a standard HTML attribute-->
   <audio data-key="65" src="sounds/clap.wav"></audio>
   <audio data-key="83" src="sounds/hihat.wav"></audio>
   <audio data-key="68" src="sounds/kick.wav"></audio>
@@ -59,6 +61,33 @@
 
 <script>
 
+//keydown triggers event listener, "playing" class added to key element - adds border and makes element slightly
+//bigger. When keydown event is done, another event listener is triggered by using transitionend, and "playing" 
+//class is removed from key element.
+
+ 
+function playSound(e){
+  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+  const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+  if(!audio) return; //if not one of the eight keys we want, stops function from running
+  audio.currentTime = 0 //if you call .play() on an audio that is already 
+  //playing, JS won't play. This code eliminate issue by rewinding to start
+  audio.play();
+  key.classList.add('playing');
+}
+
+function removeTransition(e){
+  if(e.propertyName !== 'transform') return; // skip if it's not a transform
+  this.classList.remove('playing');
+}
+
+const keys = document.querySelectorAll('.key');
+// Need forEach loop because JS (?) cannot listen to an array of elements
+keys.forEach( key => key.addEventListener('transitionend', removeTransition));
+
+
+window.addEventListener('keydown', playSound)
 </script>
 
 
