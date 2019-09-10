@@ -83,7 +83,8 @@ function removeTransition(e){
 }
 
 const keys = document.querySelectorAll('.key');
-// Need forEach loop because JS (?) cannot listen to an array of elements
+// Need forEach loop because JS (?) cannot listen to an array of elements - note: keys is a nodeList not an array
+// forEach works on both am array and a nodelist, but other array methods: map, filter, reduce --> do not
 keys.forEach( key => key.addEventListener('transitionend', removeTransition));
 
 
