@@ -17,29 +17,52 @@
       p.style.fontSize = '50px';
     }
 
-    // Regular
+    // Regular - shows you element
+    console.log('hello');
 
     // Interpolated
 
     // Styled
+    console.log('%c I am some great text', 'font-size:20px');
 
-    // warning!
+    // warning! - will give us stack trace to where it got called
+    console.warn('warning!');
 
-    // Error :|
+    // Error :| - gives you stack trace to error
+    console.log('error!');
 
     // Info
+    console.info('your fun fact here');
 
-    // Testing
+    // Testing - assert only fires if something is wrong (falsey?)
+    console.assert(1===1, 'this will not show');
+    console.assert(1===2, 'however, this will show');
 
-    // clearing
+    // clearing - clears console messaging
+    console.clear();
 
-    // Viewing DOM Elements
+    // Viewing DOM Elements - console.dir - directory? let you view all the properites of an element
+    const p = document.querySelector('p');
+    console.dir(p);
 
     // Grouping together
+    // dogs.forEach( dog => {
+    //   console.group(`${dog.name}`);
+    //   console.log(`This is ${dog.name}`);
+    //   console.log(`${dog.name} is ${dog.age} years old`)
+    // })
 
-    // counting
+    // counting - counts the number of time you use a word, dom node, number etc.
+    console.count('Wes');
 
-    // timing
+    // timing - can also use performance.now
+      console.time('fetching data')
+      fetch('https://api.github.com/users/wesbos')
+        .then(data => data.json())
+        .then(data => {
+          console.timeEnd('fetching data');
+          console.log(data);
+        })
 
   </script>
 </body>
