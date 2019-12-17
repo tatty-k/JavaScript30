@@ -21,13 +21,13 @@ const cities = [];
 //fetch and .json() return promises
 fetch(endpoint)
   .then(blob => blob.json())
-  .then(data => cities.push(...data))
+  .then(data => cities.push(...data));
 
 function findMatches(wordToMatch, cities){
   return cities.filter( place => {
     //checks to see if city or state matches what was searched
     //g=global, i='insenstive' AKA matches regarless of up/low case
-    const regex = new RegExp(wordToMatch,'gi');
+    const regex = new RegExp(wordToMatch, 'gi');
     return place.city.match(regex) || place.state.match(regex)
   });
 }
